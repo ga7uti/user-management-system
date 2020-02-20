@@ -86,10 +86,10 @@ public class ValidateUtil {
 	 */
 	private static boolean validateUserId(String userId) {
 		if (userId.isEmpty()) {
-			//System.out.println("UserId cannot be blank");
+			System.out.println("UserId cannot be blank");
 			return false;
 		} else if (!userId.matches("[A-Za-z0-9]+")) {
-			//System.out.println("UserId must be alphanumeric");
+			System.out.println("UserId must be alphanumeric");
 			return false;
 		}
 
