@@ -20,7 +20,7 @@ public class UserController {
 	 * @param password
 	 * @return
 	 * 
-	 * Method to login user
+	 * Method to login user. It validates the username and password and pass the value to dao layer.
 	 */
 	public User login(String username , String password) {
 		if(ValidateUtil.loginValidation(username, password) ) {
@@ -33,7 +33,7 @@ public class UserController {
 	 * @param user
 	 * @return
 	 * 
-	 * Method to register user
+	 * Method to register user. It validates all the infomartion and if validation is sucessfull then send it to dao layer
 	 */
 	public boolean register(User user) {
 		if(ValidateUtil.registerValidation(user)) {
@@ -46,7 +46,7 @@ public class UserController {
 	/**
 	 * @param user
 	 * 
-	 * Method to logout user
+	 * Method to logout user.If the user is not null then call the logout method in dao layer
 	 */
 	public void logout(User user) {
 		if(user != null) {

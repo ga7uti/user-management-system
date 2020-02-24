@@ -1,4 +1,4 @@
-	
+
 package com.go.dao;
 
 import java.util.HashMap;
@@ -19,9 +19,8 @@ public class UserDaoImp implements UserDao {
 		setUserMap();
 	}
 
-	
 	/**
-	 * Method to set dummy data
+	 * Method to set dummy data.It inflates the hashmap collection with the dummy data.
 	 */
 	public void setUserMap() {
 		userDb.put("ga7uti",
@@ -30,8 +29,8 @@ public class UserDaoImp implements UserDao {
 		userDb.put("karan", new User("Karan Bisht", "Sales-Representative", "karan", "@Qwerty1234", "7042312882",
 				"karan@gmail.com"));
 
-		userDb.put("akasharyz1",
-				new User("Akash Kumar", "Product Master", "akasharyz1", "@Qwerty1234", "7042312803", "akash@gmail.com"));
+		userDb.put("akasharyz1", new User("Akash Kumar", "Product Master", "akasharyz1", "@Qwerty1234", "7042312803",
+				"akash@gmail.com"));
 
 		userDb.put("amitvikram98", new User("Amit Vikram Tripathi", "Retailer", "amitvikram98", "@Qwerty1234",
 				"999952320", "avt@gmail.com"));
@@ -40,11 +39,13 @@ public class UserDaoImp implements UserDao {
 				"7894561230", "shalbin@gmail.com"));
 	}
 
-	
 	/**
-	 * @param String,String
-	 * @return
-	 * Method to login user
+	 * @param username
+	 * @param password
+	 * @return 
+	 * 
+	 * Method to login user.It searches the user in the hashmap collection and returns null in case username doesnot exits
+	 * or password is wrong and if user exits and password matched then returns user
 	 */
 	@Override
 	public User login(String username, String password) {
@@ -60,48 +61,45 @@ public class UserDaoImp implements UserDao {
 		return user;
 	}
 
-	
 	/**
-	 * @param User 
+	 * @param User
 	 * @return 
-	 * Method to put new user
+	 * 
+	 * Method to add new user.It first searches the username in  the collection if it is not present then add the new user 
+	 * to collection otherwise returns false.
 	 */
 	@Override
 	public boolean register(User user) {
-		if(searchUser(user.getUserId()) == null) {
+		if (searchUser(user.getUserId()) == null) {
 			userDb.put(user.getUserId(), user);
 			return true;
-		}else {
+		} else {
 			System.out.println("User name already exits");
 			return false;
 		}
-		
+
 	}
 
-	
-	
 	/**
-	 * @param User
-	 * Method to logout user
+	 * @param User 
+	 * 
+	 * Method to logout user.If user passed as arguement is not null and user name exits then it changes the user property 
+	 * isLoggedIn to false.
 	 */
 	@Override
 	public void logout(User user) {
-		if (user != null) {
-
-			if (searchUser(user.getUserId()) != null) {
-				System.out.println(user.getFullname() + " is successfully logged out");
-				userDb.get(user.getUserId()).setLoggedIn(false);
-			}
+		if (user != null && searchUser(user.getUserId()) != null) {
+			System.out.println(user.getFullname() + " is successfully logged out");
+			userDb.get(user.getUserId()).setLoggedIn(false);
 		}
 	}
 
-	
-	
 	/**
 	 * @param String
-	 * @return
+	 * @return user
 	 * 
-	 * Method to search is user exists or not
+	 * Method to search is user exists or not.It checks the username passed as a arguement in the collection an return user if 
+	 * it is present otherwise null
 	 */
 	private User searchUser(String username) {
 		if (userDb.containsKey(username)) {

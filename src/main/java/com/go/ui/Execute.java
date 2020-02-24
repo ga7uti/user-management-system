@@ -18,15 +18,15 @@ public class Execute {
 	}
 
 	/**
-	 * User Interface for intreaction with user 
+	 * User Interface for intreaction with user
 	 */
 	public void run() {
-		int i = 0;
+		boolean runLoop = true;
 		String username = "";
 		String password = "";
-		while (i != 4) {
+		while (runLoop) {
 			System.out.print("User Managment System \n " + "1. Login \n " + "2. Register \n " + "3. Logout \n"
-					+ " 4. Exit \n" + "Enter your  choice : ");
+					+ "Enter your  choice : ");
 			int choice = scanner.nextInt();
 			switch (choice) {
 			case 1:
@@ -49,6 +49,7 @@ public class Execute {
 				break;
 
 			case 3:
+
 				if (user != null) {
 					controller.logout(user);
 					user = null;
@@ -56,23 +57,25 @@ public class Execute {
 					System.out.println("No user logged in ");
 				}
 				break;
-			case 4:
-				System.exit(0);
 			default:
 				System.out.println("Wrong choice");
 			}
 
-			scanner.next();
+			System.out.println("Want to exit y/n ");
+
+			if (scanner.next().equals("y")) {
+				runLoop = false;
+			}
 		}
-		
+
 		scanner.close();
 
 	}
 
 	/**
-	 * @return 
+	 * @return
 	 * 
-	 * Method to get details for registration
+	 *         Method to get details for registration
 	 */
 	private User getUserDetails() {
 		User user = new User();
